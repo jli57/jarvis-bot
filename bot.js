@@ -25,6 +25,14 @@ client.on("message", (message) => {
     let [age, sex, location] = args;
     message.reply(`Hello ${message.author.username}, I see you're a ${age} year old ${sex} from ${location}. I'm a cute anime grill, wanna date?`);
   } else
+  if (command == "ask") {
+    let [user] = args;
+    if (user == "<@193555132212969472>" || user == `<@${config.ownerID}>` ) {
+      message.channel.send(`I'm too shy~ kyaaaa~ ${message.author.username}`);
+      return;
+    }
+    message.channel.send(`Hello ${user}, I'm a cute anime grill, wanna date?`);
+  } else
   if (command === "jing" ) {
     message.channel.send("My master is away now <@" + config.ownerID+ ">");
   } else
