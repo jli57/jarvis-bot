@@ -1,8 +1,19 @@
 {
-  "name": "greeter-bot",
+  "name": "Test-Bot",
   "version": "1.0.0",
-  "description": "My own Discord bot",
+  "description": "",
   "main": "bot.js",
-  "author": "YOUR-NAME-HERE",
-  "dependencies": {}
+  "dependencies": {
+    "bufferutil": "^4.0.0",
+    "discord.io": "^2.5.3",
+    "discord.js": "^11.4.2",
+    "winston": "^2.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
