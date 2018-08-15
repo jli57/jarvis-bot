@@ -1,5 +1,4 @@
 const fs = require("fs");
-
 exports.run = (client, message, args) => {
   fs.readdir("./commands/", (err,files) => {
     if (err) return console.error(err);
