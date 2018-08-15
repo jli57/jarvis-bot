@@ -1,1 +1,0 @@
-https://discordapp.com/oauth2/authorize?client_id=475378326257664020&scope=bot
