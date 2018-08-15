@@ -3,7 +3,7 @@ exports.run = (client, message, args, ownerID) => {
   users.forEach( user => {
     let msg = "";
     if ( user.id == client.user.id ) {
-      msg = `Are you really asking me to ask myself?`
+      return message.reply(`Are you really asking me to ask myself?`); 
     } else if ( user.id == ownerID ) {
       msg = `I'm too shy to ask my master, kyaaaaa~`;
     } else if ( user.bot ) {
