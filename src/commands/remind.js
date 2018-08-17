@@ -5,17 +5,21 @@ const dateFormat = require("dateformat");
 exports.run = (client, message, args) => {
 
   let today = new Date();
-  let str = args[args.length-1];
+  const dateUtils = require("../utils/date.js");
 
-  // parse time, pass in str and return [hour, min]
-  const parseTime = require("../utils/parseTime.js");
-  let timeStamp = parseTime.run( args[args.length-1], (err) => { if (err) throw err; });
+  let timeDiff = dateUtils.parseTimeZones(args[args.length-1]);
+  if ( timeDiff ) {
+    args.pop();
+  } else {
+    timeDiff = 0;
+  }
+
+  let timeStamp = dateUtils.parseTime(args[args.length-1]);
+
   if ( timeStamp !== null ) args.pop();
   let [hour, min] = timeStamp !== null ? timeStamp : [ 0, 0 ];
 
-  // parse date, pass in str and return [month, day]
-  const parseDate = require("../utils/parseDate.js");
-  let dateStamp = parseDate.run(args[args.length-1], (err) => { if (err) throw err; });
+  let dateStamp = dateUtils.parseDate(args[args.length-1]);
   if ( dateStamp !== null ) args.pop();
   let [month, day] = dateStamp !==  null ? dateStamp : [ today.getMonth(), today.getDate() ];
 
@@ -25,12 +29,13 @@ exports.run = (client, message, args) => {
   // add the time remaining to text
   if ( dateStamp !== null || timeStamp !== null ) {
     if (evt_date.getTime() < today.getTime()) return message.channel.send(`Whoopsies, the event is already over.`);
-    const dateDiff = require("../utils/dateDiff.js");
-    let [ days, hours, mins ] = dateDiff.run( today, evt_date, (err) => { if (err) throw err; });
+    let [ days, hours, mins ] = dateUtils.dateDiff( today, evt_date );
     args.push("in");
     if ( days > 0 ) args.push(`${days}d`);
-    if ( hours >= 0 || mins >= 0) args.push(`${hours}h ${mins}min`);
+    if ( hours >= 0 || mins >= 0) args.push(`${hours+timeDiff}h ${mins}min`);
   }
+
+  //testing message.channel.send(`${args.join(" ")}`);
 
   // divide words into appropriate lines
   if (args.join(" ").length > 55) return message.channel.send("Your message is too long! Try being more concise.");
@@ -68,4 +73,5 @@ exports.run = (client, message, args) => {
       });
     });
   });
+  
 }
