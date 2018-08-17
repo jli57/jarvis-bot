@@ -4,8 +4,9 @@ const dateFormat = require("dateformat");
 
 exports.run = (client, message, args) => {
 
-  let today = new Date();
   const dateUtils = require("../utils/date.js");
+
+  let today = new Date();
 
   let timeDiff = dateUtils.parseTimeZones(args[args.length-1]);
   if ( timeDiff ) {
@@ -28,15 +29,13 @@ exports.run = (client, message, args) => {
 
   // add the time remaining to text
   if ( dateStamp !== null || timeStamp !== null ) {
-    if (evt_date.getTime() < today.getTime()) return message.channel.send(`Whoopsies, the event is already over.`);
-    let [ days, hours, mins ] = dateUtils.dateDiff( today, evt_date );
+    if (evt_date.getTime()+(timeDiff*60*60*1000) < today.getTime()) return message.channel.send(`Whoopsies, the event is already over.`);
+    let [ days, hours, mins ] = dateUtils.dateDiff( today, evt_date, timeDiff );
     args.push("in");
     if ( days > 0 ) args.push(`${days}d`);
-    if ( hours >= 0 || mins >= 0) args.push(`${hours+timeDiff}h ${mins}min`);
+    if ( hours >= 0 || mins >= 0) args.push(`${hours}h ${mins}min`);
   }
-
-  //testing message.channel.send(`${args.join(" ")}`);
-
+  //message.channel.send(`${args.join(" ")} ${timeDiff}`);
   // divide words into appropriate lines
   if (args.join(" ").length > 55) return message.channel.send("Your message is too long! Try being more concise.");
 
@@ -73,5 +72,5 @@ exports.run = (client, message, args) => {
       });
     });
   });
-  
+
 }

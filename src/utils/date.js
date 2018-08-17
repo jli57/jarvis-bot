@@ -43,10 +43,10 @@ exports.parseTimeZones = ( str ) => {
   return timezones[timezone];
 }
 
-exports.dateDiff = ( date1, date2 ) => {
+exports.dateDiff = ( date1, date2, timeDiff ) => {
 
   let start = date1.getTime();
-  let end = date2.getTime();
+  let end = date2.getTime()+ (timeDiff*1000*60*60);
 
   let minsDiff = Math.round(Math.abs(start-end)/(1000*60), 0);
 
