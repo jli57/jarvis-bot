@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
   if ( timeDiff ) {
     args.pop();
   } else {
-    timeDiff = 0;
+    timeDiff = 4;
   }
 
   let timeStamp = dateUtils.parseTime(args[args.length-1]);
