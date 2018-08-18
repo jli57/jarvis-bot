@@ -12,13 +12,19 @@ exports.parseDate = ( str ) => {
 
 exports.parseTime = ( str ) => {
 
-  let strMatch = str.match(/(\d+):(\d+)\s?([A-Za-z]{0,2})/);
-
+  let strMatch = str.match(/(\d+):(\d+)([A-Za-z]{0,2})/);
   if ( strMatch !== null ) {
     let [hour, min, am_pm] = strMatch.slice(1, 4);
     if ( am_pm === "pm" && hour < 12 ) hour = parseInt(hour) + 12;
     if ( am_pm === "am" && hour == 12 ) hour = 0;
     return [ hour, min ];
+  }
+  strMatch = str.match(/(\d+)([A-Za-z]{0,2})/);
+  if ( strMatch !== null ) {
+    let [hour, apm_pm] = strMatch.slice(1, 3);
+    if ( am_pm === "pm" && hour < 12 ) hour = parseInt(hour) + 12;
+    if ( am_pm === "am" && hour == 12 ) hour = 0;
+    return [ hour, 0 ];
   }
   return strMatch;
 }
@@ -29,13 +35,13 @@ exports.parseTimeZones = ( str ) => {
   let timezone = str.toUpperCase();
 
   let timezones = {
-    PST: 8,
+    PST: 7,
     PDT: 7,
-    EST: 5,
+    EST: 4,
     EDT: 4,
-    CST: 6,
+    CST: 5,
     CDT: 5,
-    MST: 7,
+    MST: 6,
     MDT: 6,
     HST: 10
   }
@@ -46,7 +52,7 @@ exports.parseTimeZones = ( str ) => {
 exports.dateDiff = ( date1, date2, timeDiff ) => {
 
   let start = date1.getTime();
-  let end = date2.getTime()+ (timeDiff*1000*60*60);
+  let end = date2.getTime()+(timeDiff*1000*60*60);
 
   let minsDiff = Math.round(Math.abs(start-end)/(1000*60), 0);
 
