@@ -21,7 +21,7 @@ exports.parseTime = ( str ) => {
   }
   strMatch = str.match(/(\d+)([A-Za-z]{0,2})/);
   if ( strMatch !== null ) {
-    let [hour, apm_pm] = strMatch.slice(1, 3);
+    let [hour, am_pm] = strMatch.slice(1, 3);
     if ( am_pm === "pm" && hour < 12 ) hour = parseInt(hour) + 12;
     if ( am_pm === "am" && hour == 12 ) hour = 0;
     return [ hour, 0 ];

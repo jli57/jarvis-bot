@@ -36,7 +36,7 @@ exports.run = (client, message, args) => {
     if ( hours >= 0 || mins >= 0) args.push(`${hours}h ${mins}min`);
   }
   message.channel.send(`${args.join(" ")} ${timeDiff}`);
-/*
+
   // divide words into appropriate lines
   if (args.join(" ").length > 55) return message.channel.send("Your message is too long! Try being more concise.");
 
@@ -73,6 +73,5 @@ exports.run = (client, message, args) => {
       });
     });
   });
-  */
-
+  
 }
