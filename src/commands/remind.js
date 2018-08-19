@@ -29,13 +29,17 @@ exports.run = (client, message, args) => {
 
   // add the time remaining to text
   if ( dateStamp !== null || timeStamp !== null ) {
-    if (evt_date.getTime()+(timeDiff*60*60*1000) < today.getTime()) return message.channel.send(`Whoopsies, the event is already ogre.`);
+    if (evt_date.getTime()+(timeDiff*60*60*1000) < today.getTime()) {
+      return message.channel.send({
+        files: ["https://i.imgur.com/3LSJxwd.jpg"]
+      });
+    }
     let [ days, hours, mins ] = dateUtils.dateDiff( today, evt_date, timeDiff );
     args.push("in");
     if ( days > 0 ) args.push(`${days}d`);
     if ( hours >= 0 || mins >= 0) args.push(`${hours}h ${mins}min`);
   }
-  message.channel.send(`${args.join(" ")}`);
+  //message.channel.send(`${args.join(" ")}`);
 
   // divide words into appropriate lines
 
@@ -74,5 +78,5 @@ exports.run = (client, message, args) => {
       });
     });
   });
-  
+
 }
