@@ -12,7 +12,7 @@ exports.run = (client, message, args) => {
   if ( timeDiff ) {
     args.pop();
   } else {
-    timeDiff = 4;
+    timeDiff = dateUtils.parseTimeZones("CST");
   }
 
   let timeStamp = dateUtils.parseTime(args[args.length-1]);
@@ -38,6 +38,7 @@ exports.run = (client, message, args) => {
   message.channel.send(`${args.join(" ")}`);
 
   // divide words into appropriate lines
+  /*
   if (args.join(" ").length > 55) return message.channel.send("Your message is too long! Try being more concise.");
 
   let [x, y, maxChars, maxCharWidth, maxLineHeight, x_center, y_center] = [310, 150, 12, 10, 25, 360,215];
@@ -73,5 +74,5 @@ exports.run = (client, message, args) => {
       });
     });
   });
-
+  */
 }
