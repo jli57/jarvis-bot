@@ -29,7 +29,7 @@ exports.run = (client, message, args) => {
 
   // add the time remaining to text
   if ( dateStamp !== null || timeStamp !== null ) {
-    if (evt_date.getTime()+(timeDiff*60*60*1000) < today.getTime()) return message.channel.send(`Whoopsies, the event is already over.`);
+    if (evt_date.getTime()+(timeDiff*60*60*1000) < today.getTime()) return message.channel.send(`Whoopsies, the event is already ogre.`);
     let [ days, hours, mins ] = dateUtils.dateDiff( today, evt_date, timeDiff );
     args.push("in");
     if ( days > 0 ) args.push(`${days}d`);
@@ -38,7 +38,7 @@ exports.run = (client, message, args) => {
   message.channel.send(`${args.join(" ")}`);
 
   // divide words into appropriate lines
-  /*
+
   if (args.join(" ").length > 55) return message.channel.send("Your message is too long! Try being more concise.");
 
   let [x, y, maxChars, maxCharWidth, maxLineHeight, x_center, y_center] = [310, 150, 12, 10, 25, 360,215];
@@ -74,5 +74,5 @@ exports.run = (client, message, args) => {
       });
     });
   });
-  */
+  
 }
