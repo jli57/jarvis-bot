@@ -8,9 +8,11 @@ exports.run = (client, message, args) => {
 
   let today = new Date();
   let next_sat = new Date();
-  next_sat = new Date(next_sat.setDate(next_sat.getDate() + (6 - 1 - next_sat.getDay() + 7) % 7 + 1));
+  next_sat = new Date(next_sat.setDate(next_sat.getDate() + (7 - 1 - next_sat.getDay() + 7) % 7 + 1));
 
-  let evt_date = new Date(next_sat.getFullYear(), next_sat.getMonth(), next_sat.getDay(), 18, 30, 0, 0);
+  let evt_date = new Date(next_sat.getFullYear(), next_sat.getMonth(), next_sat.getDate(), 1, 30, 0, 0);
+
+  //message.channel.send(`${next_sat} ${evt_date}`)
 
 
   let lines = ["Guild", "Missions", "in"];
@@ -44,5 +46,6 @@ exports.run = (client, message, args) => {
       });
     });
   });
+  
 
 }
