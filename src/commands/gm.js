@@ -10,7 +10,7 @@ exports.run = (client, message, args) => {
   let next_sat = new Date();
   next_sat = new Date(next_sat.setDate(next_sat.getDate() + (7 - 1 - next_sat.getDay() + 7) % 7 + 1));
 
-  let evt_date = new Date(next_sat.getFullYear(), next_sat.getMonth(), next_sat.getDate(), 1, 30, 0, 0);
+  let evt_date = new Date(next_sat.getFullYear(), next_sat.getMonth(), next_sat.getDate(), 1, 0, 0, 0);
 
   //message.channel.send(`${next_sat} ${evt_date}`)
 
@@ -46,6 +46,6 @@ exports.run = (client, message, args) => {
       });
     });
   });
-  
+
 
 }
